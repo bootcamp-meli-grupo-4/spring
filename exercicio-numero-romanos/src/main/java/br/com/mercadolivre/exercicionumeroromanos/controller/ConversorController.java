@@ -15,6 +15,6 @@ public class ConversorController {
 
     @GetMapping("/{numero}")
     public String converterNumero(@PathVariable Integer numero){
-        return service.converter(numero);
+        return service.converteDecimalParaRomano(numero);
     }
 }

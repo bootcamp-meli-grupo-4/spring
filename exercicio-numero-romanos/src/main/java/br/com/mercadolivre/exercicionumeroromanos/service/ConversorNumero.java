@@ -25,18 +25,33 @@ public class ConversorNumero {
         mapaNumeros.put(1000,"M");
     }
 
-    public String converter(Integer numeroDecimal) {
+    public String converteDecimalParaRomano(Integer numeroDecimal) {
+        StringBuilder resultado = new StringBuilder();
+
+        Integer quocienteMarcado = 0;
+
+        if(numeroDecimal > 3999) {
+            quocienteMarcado = numeroDecimal/1000;
+            resultado.append("/").append(converter(quocienteMarcado)).append("\\");
+        }
+
+        numeroDecimal = numeroDecimal - (quocienteMarcado * 1000);
+
+        return resultado.append(converter(numeroDecimal)).toString();
+    }
+
+    private String converter(Integer numeroDecimal) {
         StringBuilder resultado = new StringBuilder();
         Set<Integer> keys = mapaNumeros.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toCollection(LinkedHashSet::new));
 
         for (Integer m : keys)
         {
-            Integer valorDividendo = numeroDecimal / m;
-            if (valorDividendo > 0) {
-                for (int i = 0; i < valorDividendo; i++) {
+            Integer quociente = numeroDecimal / m;
+            if (quociente > 0) {
+                for (int i = 0; i < quociente; i++) {
                     resultado.append(mapaNumeros.get(m));
                 }
-                numeroDecimal = numeroDecimal - (valorDividendo * m);
+                numeroDecimal = numeroDecimal - (quociente * m);
             }
         }
 
