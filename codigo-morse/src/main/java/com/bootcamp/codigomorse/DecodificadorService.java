@@ -40,7 +40,7 @@ public class DecodificadorService {
         dicionarioMorse.put("--..", "Z");
     }
 
-    public String decoficadorMorse(String texto) {
+    public String decodificadorMorse(String texto) {
         String[] palavras = texto.split("  ");
         return Arrays.stream(palavras).reduce("", (result, current) -> result + decodificaPalavra(current) + " ");
     }

@@ -17,6 +17,6 @@ public class DecodificadorMorseController {
 
     @GetMapping("/morse/{texto}")
     public String decodificadorMorse(@PathVariable String texto) {
-        return decodificadorService.decoficadorMorse(texto);
+        return decodificadorService.decodificadorMorse(texto);
     }
 }
